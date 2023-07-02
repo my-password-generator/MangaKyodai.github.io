@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAD30lEQVR4AayShW4cMRCGLQgzHArKDK9xor5KnyDMSZmZmZmZRWWuKMy8e3y7U8/KvXG6PlR+6dM3Wtv/tElYulnzHXI918HnvQZ7PNfgGfdvz1XQEJzFtz14B++y+crCO+D2XoG97ssw475swhwuGWSOK26T3zX24luWbZbehTxe1uS+YOiuCzGwOB+3mA2yAvcFU8cO7Mrsf30R3Lz4nfMcL+eglZyNkm3QGXZhJ0snzrOw3nE61uc4zQs4wmKOxC3PaIszZA4/I2On6zSsY8ni4P9Kx6loX/WJMCCOk5G47dCZ+r79HLtxR8LfueN45F318TDEORYiW4TJHBcvbf8QhT/TJoRiJkQME2bCJvRpJnwaM8TbuX24Q/k3wS82VR0JwRwOB8nSjF5xJgRvhgxIEtEj3kngLibHcQzc1YdDetWhICSj8iD5UW8MUsX+PoBGdNzJ/qXqQHBv5f4AVHCEBX4yp1LMG26EIJ2I+2hpFn18J8OsuQi5lXv9MxV7/ZAul35HIY0k7cCduJtV7tN95bt0sNgdt5g1sjR/GrX/+E9+j8DyI35xV7eh6q/cpftY2Q5tDwfSoVxYj5jwf5Yf4qV0j+bknXtY2bbZZxxIh9KtlkERfjaD52QFcgdSvl17xkq3zP4u3TwDSAlZAZ2pgmeZgrtZ6aZpraRrGpR0kuVZFTpXv1eBu1lpx5RW3DEFFu1kmWzSM21AiehC04wWc/uUxorbpn4XtU6CiuLWKcvZ5HVPxN7ZQkZwNytqnnxW1DwBSGETWSabnPsSkjuV4G5W2DC+hwPJyCZdL/22ngLJYt7DihonfAW1Y2BRR5bJJhtvaeL9OFoJ7mZrGiC3sHb8b6vlcdswFATRL2ZCDagAX12H+3DOOWe7A8d2fFQZlsRMXpzu6z8kVnGdPcDgDbRJ5InP/nFB3lFOTMlck1TVuW8gD8wzcRO3FeQfFvfeQUbeQU5M2K0yOGBJXlVjcmaO1HFTsernecPZTd/c3ZQ0CeTM7M+S3L0MNWbpT/a94abql7ebXDrburidECiZa5LsspZUZO+kzNI2Z31r9JPsmlx7M2namzHZG7J1vaQkp6qBff09csYN3FKS6jt5w1mPA2stos8sCb/b6zFzIPMcduOG+kzORjpurUaBtRKRuRwSsz8LqnpWQuaoV8MAu9V3VF/MG9Zi2DQXAxrwUlhSENeZA7aWwyY/+bc1tkKu/hOXxkLwZswHVLlTUlINNW0mjFnswC71W+FtGLOd+9ps+7k2qw/MtEmSrlNZB+c6z5jBrPo3nZNjzXQm1FTrjgSp6dYDakr3oFd9U+9y1lO9tTZT6gAAAABJRU5ErkJggg==" type="image/png"/>
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAD30lEQVR4AayShW4cMRCGLQgzHArKDK9xor5KnyDMSZmZmZmZRWWuKMy8e3y7U8/KvXG6PlR+6dM3Wtv/tElYulnzHXI918HnvQZ7PNfgGfdvz1XQEJzFtz14B++y+crCO+D2XoG97ssw475swhwuGWSOK26T3zX24luWbZbehTxe1uS+YOiuCzGwOB+3mA2yAvcFU8cO7Mrsf30R3Lz4nfMcL+eglZyNkm3QGXZhJ0snzrOw3nE61uc4zQs4wmKOxC3PaIszZA4/I2On6zSsY8ni4P9Kx6loX/WJMCCOk5G47dCZ+r79HLtxR8LfueN45F318TDEORYiW4TJHBcvbf8QhT/TJoRiJkQME2bCJvRpJnwaM8TbuX24Q/k3wS82VR0JwRwOB8nSjF5xJgRvhgxIEtEj3kngLibHcQzc1YdDetWhICSj8iD5UW8MUsX+PoBGdNzJ/qXqQHBv5f4AVHCEBX4yp1LMG26EIJ2I+2hpFn18J8OsuQi5lXv9MxV7/ZAul35HIY0k7cCduJtV7tN95bt0sNgdt5g1sjR/GrX/+E9+j8DyI35xV7eh6q/cpftY2Q5tDwfSoVxYj5jwf5Yf4qV0j+bknXtY2bbZZxxIh9KtlkERfjaD52QFcgdSvl17xkq3zP4u3TwDSAlZAZ2pgmeZgrtZ6aZpraRrGpR0kuVZFTpXv1eBu1lpx5RW3DEFFu1kmWzSM21AiehC04wWc/uUxorbpn4XtU6CiuLWKcvZ5HVPxN7ZQkZwNytqnnxW1DwBSGETWSabnPsSkjuV4G5W2DC+hwPJyCZdL/22ngLJYt7DihonfAW1Y2BRR5bJJhtvaeL9OFoJ7mZrGiC3sHb8b6vlcdswFATRL2ZCDagAX12H+3DOOWe7A8d2fFQZlsRMXpzu6z8kVnGdPcDgDbRJ5InP/nFB3lFOTMlck1TVuW8gD8wzcRO3FeQfFvfeQUbeQU5M2K0yOGBJXlVjcmaO1HFTsernecPZTd/c3ZQ0CeTM7M+S3L0MNWbpT/a94abql7ebXDrburidECiZa5LsspZUZO+kzNI2Z31r9JPsmlx7M2namzHZG7J1vaQkp6qBff09csYN3FKS6jt5w1mPA2stos8sCb/b6zFzIPMcduOG+kzORjpurUaBtRKRuRwSsz8LqnpWQuaoV8MAu9V3VF/MG9Zi2DQXAxrwUlhSENeZA7aWwyY/+bc1tkKu/hOXxkLwZswHVLlTUlINNW0mjFnswC71W+FtGLOd+9ps+7k2qw/MtEmSrlNZB+c6z5jBrPo3nZNjzXQm1FTrjgSp6dYDakr3oFd9U+9y1lO9tTZT6gAAAABJRU5ErkJggg=="> </head>
+    <meta name="robots" content="index"/><meta name="googlebot" content="index"/>
+    <meta name="referrer" content="never"/>
+    <meta name="description" content="Random Screenshots from Manga adalah grup yang membahas dan membagikan gambar-gambar (screenshots) dari berbagai jenis manga. Grup ini terbuka untuk penggemar manga dari segala usia dan latar belakang dan bertujuan untuk memfasilitasi diskusi yang positif dan interaksi yang menyenangkan antara para anggota grup. Dalam grup ini, pengguna dapat saling berbagi screenshot favorit mereka atau merekomendasikan manga yang menarik untuk dibaca. Grup ini juga menyediakan ruang bagi para penggemar manga untuk berbagi pendapat dan pengalaman mereka tentang komunitas manga di Indonesia dan di seluruh dunia.">
+    <meta name="author" content="Random Screenshots from Manga">
+    <meta name="google-site-verification" content="nmCNx2yYOljjLOnv0NWXhMMP9JlU4ghzGCbIBp1djKI" />
+    <title>Random Screenshots from Manga</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Random Screenshots from Manga" />
+    <meta property="og:description" content="Random Screenshots from Manga adalah grup yang membahas dan membagikan gambar-gambar (screenshots) dari berbagai jenis manga. Grup ini terbuka untuk penggemar manga dari segala usia dan latar belakang dan bertujuan untuk memfasilitasi diskusi yang positif dan interaksi yang menyenangkan antara para anggota grup. Dalam grup ini, pengguna dapat saling berbagi screenshot favorit mereka atau merekomendasikan manga yang menarik untuk dibaca. Grup ini juga menyediakan ruang bagi para penggemar manga untuk berbagi pendapat dan pengalaman mereka tentang komunitas manga di Indonesia dan di seluruh dunia." />
+    <meta property="og:url" content="https://www.facebook.com/groups/random.screenshots.from.manga/?ref=share" />
+    <meta property="og:site_name" content="Random Screenshots from Manga" />
+    <meta property="og:image" content="https://z-m-scontent.fpku3-2.fna.fbcdn.net/v/t39.30808-6/340937402_608476030925413_3454499267862323610_n.jpg?stp=c0.5000x0.5000f_dst-jpg_e15_p1080x565_q60_tt1_u&amp;efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&amp;_nc_cid=1225&amp;_nc_ad=z-m&amp;_nc_rml=0&amp;_nc_ht=z-m-scontent.fpku3-2.fna&amp;_nc_cat=110&amp;_nc_ohc=XpmWIun0BWMAX_savm9&amp;ccb=1-7&amp;_nc_sid=31b3e3&amp;oh=00_AfD8kKvn8dbUkkWFsp_qlMT9AvjxXQxnqHe2w4wEeTeztg&amp;oe=64A55B69" />
+    <meta property="og:image:width" content="99" />
+    <meta property="og:image:height" content="88" />
+    <meta property="og:image:type" content="image/png" />
+    <!-- Bootstrap core CSS -->
+    <link href="https://otakudesu.stream/files/style-view.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <script src="https://otakudesu.stream/files/jquery.min.js"></script>
+    <link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'/>
+<style>.info-icon{margin-top:-6px}</style>
+<style type="text/css">body{background-color:#000000;background-image:url("");background-repeat:no-repeat;background-position:top center;background-attachment:fixed;background-size:cover;}.panel-default>.panel-heading{background-color:rgb(255,172,1)!important;border-color:#FFAC01!important;text-align:center;}.navbar-default{background-color:#00090e!important;border-color:#00a1ff!important}.hanamenu{text-align:center;margin:15px auto;}.hanatombol{font-family:segoe ui;font-weight:400;font-size:17px!important;background:rgba(252,255,255,0.35);margin:0 5px;padding:2px 4% 5px;}hr{border-top:1px solid #bbb!important;}.panel{background-color:rgba(255,255,255,0.8)!important;}</style>
+<style> .ft {margin-top: 20px;}
+.ft a {background: #00a1ff;padding: 7px 10px;display: inline-block;color: #fff;border-radius: 4px;margin-right: 3px;transition:background 0.3s;}
+.ft a:hover {background: #FFFF00;}
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success{
+    color: #fff;
+    background-color: #000000;
+    border-color: #507329;
+}</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M0YBJ1V5YN" </script>
+<script>
+     window.dataLayer = window.dataLayer || []; 
+     function gtag(){dataLayer.push(arguments);} 
+     gtag('js', new Date()); 
+     
+     gtag('config', 'G-M0YBJ1V5YN'); 
+</script>
+</head>
+<body>
+<header class="navbar navbar-default navbar-fixed-top" role="navigation" style="text-align: center;padding: 5px;margin-bottom: 20px;">
+<a href=""><img src="https://z-m-static.xx.fbcdn.net/rsrc.php/v3/yA/r/OkwbMAq_I46.png" style="width: 150px;"></a>
+</header>
+<section id="content-wrapper" style='margin-top:70px'>
+ 
+<style>
+    h1, .h1 {
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+}
+    h2, .h2 {
+    font-size: 15px;
+    font-weight: 800;
+    padding: 7px 15px;
+    background: #a7bbca;
+    color: #333;
+    margin-bottom: 10px;
+}
+</style>
+<div class='container'> 
+<div class='row'>
+<div class='col-md-8'>
+<div class='panel panel-default' style='margin:0px;'>
+<div class='panel-body'>
+<center>
+<h1>Random Screenshots from Manga</h1>
+<i class="fa fa-arrow-down" aria-hidden="true"></i> Anda sebentar lagi akan dialihkan ke Grup Facebook<b> Random Screenshots from Manga</b> <span class='pull-right'></span>
+<i class="fa fa-arrow-down" aria-hidden="true"></i> 
+<hr/>   
+<style>.btn-success {width: auto;color: #fff;background-color: #00a1ff;border-color: #00a1ff;}</style>
+<p>
+<div id='tombol1' style='margin-top:10px'>
+<a id='skip' href='https://www.facebook.com/groups/random.screenshots.from.manga/?ref=share' class='btn btn-success btn-md'><i class='fa fa-cloud-download'></i> <b>
+Klik Di Sini Jika Tidak Ingin Menunggu 
+</b></a>
+</center></div>
+
+<hr><div class="ft">
+    <style>.responsive-embed-stream{position:relative;padding-bottom:51%;padding-top:44px;height:0;overflow:hidden}.responsive-embed-stream iframe,.responsive-embed-stream object,.responsive-embed-stream embed{position:absolute;top:0;left:0;width:100%;height:100%;right:1px}</style>
+<style>
+table {
+    font-size: 12px;
+    width: 100%;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+table .tablex {
+    width: 20%;
+    border-left: 5px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+table td {
+    line-height: 20px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+.ratingx span, .tablex span {
+    float: right;
+}
+table .tablex {
+    width: 20%;
+    border-left: 5px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+table td {
+    line-height: 20px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+table td {
+    line-height: 20px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+@media only screen and ( max-width: 540px ) {
+table .tablex {
+    width: 30%;}
+}
+.info {
+    font-size: 13px;
+    padding: 10px;
+    border-radius: 3px;
+    text-align: center;
+    background: #bfbfbf;
+    margin-bottom: 5px;
+    color: #171616;
+}</style>
+<script type="text/JavaScript">
+<!--
+setTimeout("location.href = 'https://www.facebook.com/groups/random.screenshots.from.manga/?ref=share';",120000);
+-->
+</script>
+<div class="info">Dialihkan otomatis dalam waktu <script type="text/javascript">
+ 
+// KONFIGURASI
+var menit = 1; // Lamanya hitung mundur (dalam menit)
+var detik = 90; // Detik standar (jangan diubah kecuali Anda tahu yang Anda lakukan)
+var penghitung_detik = detik; // Set variabel detik yang lain untuk dimanipulasi
+ 
+// HITUNG MUNDUR
+penghitung_detik = 0;
+function hitung_mundur() {
+penghitung_detik--; // Setiap siklus 1 detik mengurangi nilainya 1 poin
+if (penghitung_detik == -1) { // Deteksi detik ketika nilainya "0"
+menit--; // Setiap siklus 1 menit mengurangi nilainya 1 poin
+penghitung_detik = detik; // Me-reset detik untuk memulai hitung mundur menit yang baru
+if (menit <= -1) { // Hitung mundur selesai
+menit = 0;penghitung_detik = 0; // Menset menit dan detik ke "0"
+clearTimeout(penghitung); // Stop hitung mundur
+}
+}
+if (document.getElementById) {
+document.getElementById("hitung_mundur_tampil").innerHTML=penghitung_detik; // Memasukkan nilai variabel menit dan detik untuk ditampilkan
+}
+penghitung=setTimeout("hitung_mundur()", 1000); // Set siklus penghitungan mundur (standar: 1 detik)
+}
+ 
+// INISIALISASI
+if (document.all||document.getElementById)
+document.write(' <b id="hitung_mundur_tampil">'+penghitung_detik+' </b>'); // Format tampilan hitung mundur di antarmuka
+hitung_mundur();
+</script> Detik </h1></div><center>
+<br>
+<div>
+<img width="80%" style="text-align: center;margin:20px" src="https://z-m-scontent.fpku3-2.fna.fbcdn.net/v/t39.30808-6/340937402_608476030925413_3454499267862323610_n.jpg?stp=c0.5000x0.5000f_dst-jpg_e15_p1080x565_q60_tt1_u&amp;efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&amp;_nc_cid=1225&amp;_nc_ad=z-m&amp;_nc_rml=0&amp;_nc_ht=z-m-scontent.fpku3-2.fna&amp;_nc_cat=110&amp;_nc_ohc=XpmWIun0BWMAX_savm9&amp;ccb=1-7&amp;_nc_sid=31b3e3&amp;oh=00_AfD8kKvn8dbUkkWFsp_qlMT9AvjxXQxnqHe2w4wEeTeztg&amp;oe=64A55B69">
+</center><br>
+<h2>Tentang Grup</h2>
+<p style="margin:10px">Random Screenshots from Manga adalah grup yang membahas dan membagikan gambar-gambar (screenshots) dari berbagai jenis manga. Grup ini terbuka untuk penggemar manga dari segala usia dan latar belakang dan bertujuan untuk memfasilitasi diskusi yang positif dan interaksi yang menyenangkan antara para anggota grup. Dalam grup ini, pengguna dapat saling berbagi screenshot favorit mereka atau merekomendasikan manga yang menarik untuk dibaca. Grup ini juga menyediakan ruang bagi para penggemar manga untuk berbagi pendapat dan pengalaman mereka tentang komunitas manga di Indonesia dan di seluruh dunia.
+</p><br>
+<h2 style='margin-top:0px'>Peraturan Grup</h2>
+<ul>
+    <li>Santai</li>
+    <p>Di Diharapkan anggota bisa saling berdiskusi dengan santai dan harmonis, Jangan terlalu serius ya, ini hanya grup santai untuk sharing screenshot manga kesukaan kita.</p>
+    <li>Postingan</li>
+    <p>Postingan gambar diharapkan untuk bisa menghibur atau menjadi bahan pembicaraan bagi anggota grup lainnya. Diharapkan untuk memberikan deskripsi singkat atau info menarik seputar screenshot yang diposting untuk meningkatkan keseruan diskusi.
+        Kalian boleh share meme atau editan screenshot juga, tapi jangan sampai ada unsur-unsur yang menyebabkan discomfort ya.</p>
+    <li>Tambahkan Judul dan chapter</li>
+    <p>Mohon cantumkan judul dan nomor chapter dari manga yang di-screenshot agar anggota grup yang lain bisa mencari dan membaca ceritanya.</p>
+    <li>Peraturan Spoiler</li>
+    <p>Dilarang posting gambar yang mengandung spoiler yang bisa merusak pengalaman membaca manga bagi anggota grup yang lain tanpa Peringatan.</p>
+    <li>Ketentuan gambar</li>
+    <p>Dilarang posting gambar yang mengandung unsur pornografi atau hal-hal yang bisa menyinggung anggota grup lainnya.</p>
+    <li>Komentar</li>
+    <p>Dilarang berkomentar atau menyebarkan hal-hal yang bersifat diskriminatif berdasarkan gender, ras, agama, atau orientasi seksual.</p>
+    <li>Menghormati penggemar lain</li>
+    <p>Jangan hina atau melecehkan manga atau penggemar manga lainnya.</p>
+    <li>Berkomentar dan berdiskusi</li>
+    <p>Mohon jaga sopan santun dalam berkomentar dan berdiskusi.</p>
+    <li>Bahasa</li>
+    <p>Penggunaan bahasa Inggris atau Indonesia bebas, asalkan tetap sopan dan mudah dimengerti oleh anggota grup lainnya.</p>
+    <li>Peraturan tambahan</li>
+    <p>Ikutin peraturan tambahan atau ketentuan dari admin grup.
+
+-Direkomdasi memberi tag pada manga yang di-share agar anggota grup dapat menemukannya dengan mudah.
+-Anggota grup tidak boleh melakukan promosi dalam bentuk apapun, baik itu produk, jasa, bisnis, event, atau hal lain yang bertujuan untuk mendapatkan keuntungan atau popularitas.
+-Mohon tidak membuat diskusi yang tidak nyambung dengan anime atau manga.
+-Jangan lupa senyum dan bahagia :)
+</p><br>
+</ul>
+<style>
+/******************* start dload tabs *******************/
+.sharetabs li.tabs {
+    height: 25px;
+    line-height: 25px;
+    list-style: none;       
+    margin: 20px 0 0;
+    display: block;
+    width: 100%;
+}
+.sharetabs .tabs ol {
+    text-align: center;
+    float: left;
+    display: inline;
+    margin: 0 0px 0px 0;
+    padding: 0px 0px 0px;
+    width: 110px;
+    color: #118BB6;
+    cursor: pointer;
+    font-size: 13px;
+    border: 1px solid #e2e2e2;
+    /*border-left: 1px solid #fff;*/
+    border-left: none;
+    position: relative;
+    line-height: 25px;
+    background: #f3f3f3;
+    width: 25%;
+}
+
+.sharetabs .tabs ol:hover{
+    transition:all 0.1s linear;
+    background: #f0f0f0;
+}
+.sharetabs .tabs ol.current {
+    color: #828282;
+    background: #f0f0f0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    /*font-weight: bold;    */
+    font-size: 13px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.sharetabs .tabs ol:first-child{
+    border-left: 1px solid #e2e2e2;
+
+}
+.sharetabs .box {
+    display: none;
+    background: #f0f0f0;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #e4e4e4;
+    margin-top: 1px;
+}
+.sharetabs .box.visible {
+    display: block;
+
+    
+}
+.sharetabs .tabcontent .flashupload,
+.sharetabs .tabcontent .uploadfile{
+    text-align: center;
+}
+.sharetabs .tabcontent .uploadfile .browsebtn,
+.sharetabs .tabcontent .flashupload .browsebtn{
+    margin: 50px auto;
+}
+.sharetabs .tabcontent .uploadbtn{
+    margin: 20px;
+}
+.sharetabs .tosread{
+    font-size: 12px;
+    padding: 0px 0px 4px;
+    vertical-align: middle;
+}
+/*** end dload tabs ***/
+/******************* End Downloads *************************/
+
+
+
+/******************* START TABS *******************/
+li.tabs {
+    height: 50px;
+    line-height: 50px;
+    list-style: none;       
+    margin: 20px 0 0;
+    display: table;
+    width: 980px;
+}
+.tabs ol {
+    text-align: center;
+    display: table-cell;
+    margin: 0 0px 0px 0;
+    padding: 0px 0px 0px;
+    max-width: 100%;
+    min-width: 70px;
+    width: 200px;
+    color: #777;
+    cursor: pointer;
+    font-size: 15px;
+    border: 1px solid #e2e2e2;
+    /*border-left: 1px solid #fff;*/
+    border-left: none;
+    position: relative;
+    line-height: 50px;
+    background: #f3f3f3;
+}
+
+.tabs ol:hover{
+    transition:all 0.1s linear;
+    background: #f3f3f3;
+    color: #8f8f8f;
+}
+.tabs ol.current {
+    color: #999;
+    background: #f3f3f3;
+    box-shadow: inset 0 0 50px #e6e6e6;
+    -webkit-box-shadow: inset 0 0 50px #e6e6e6;
+    -moz-box-shadow: inset 0 0 50px #e6e6e6;
+    /*font-weight: bold;    */
+
+}
+.tabs ol:first-child{
+    border-left: 1px solid #e2e2e2;
+
+}
+.box {
+    display: none;
+/*  background: url('../images/border.jpg') left top no-repeat,
+    url('../images/border.jpg') right top no-repeat;*/
+    width: 936px;
+    padding: 20px;
+}
+.box.visible {
+    display: block;
+    
+}
+.tabcontent .flashupload,
+.tabcontent .uploadfile{
+    text-align: center;
+}
+.tabcontent .uploadfile .browsebtn,
+.tabcontent .flashupload .browsebtn{
+    margin: 50px auto;
+}
+.tabcontent .uploadbtn{
+    margin: 20px;
+}
+.tosread{
+    font-size: 12px;
+    padding: 0px 0px 4px;
+    vertical-align: middle;
+}
+@media only screen and ( max-width: 540px ) {
+.sharetabs li.tabs {
+    line-height: 25px;
+    list-style: none;
+    margin: 20px 0 0;
+    display: block;
+    width: 100%;
+}
+.sharetabs .tabs ol {width: 50%;}
+}</style>
+<script type="text/javascript">
+      (function($) {
+   $(function() {
+
+      $('li.tabs').on('click', 'ol:not(.current)', function() {
+         var section = $(this).parents('div.section:first');
+         var idx = $(this).index();
+
+         $(this).addClass('current').siblings().removeClass('current');
+         $(section).find('> div.box').eq(idx).fadeIn(150).siblings('div.box').hide();
+         $.cookie($(section).attr('id') + 'tab', idx);
+      });
+
+      $('.section').each(function(i, e) {
+         if(!e.id) return;
+
+         var idx;
+         if(idx = $.cookie(e.id + 'tab'))
+         {
+            $(e).find('> li > ol').eq(idx).click();
+         }
+      });
+
+   })
+   })(jQuery)
+    </script> 
+
+
+</div>
+</div>
+</body>
+</html>
+</html>
