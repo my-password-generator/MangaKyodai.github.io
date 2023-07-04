@@ -1,1 +1,1 @@
-# Komiku.github.io
+# MangaKyodai.github.io
